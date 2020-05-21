@@ -5,8 +5,7 @@ from time import sleep
 from login2 import site
 from login2 import username
 from login2 import pw
-
-import smtplib
+from webdriver_manager.chrome import ChromeDriverManager
 
 
 class InstaBot:
