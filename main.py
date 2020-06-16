@@ -1,31 +1,21 @@
-from lib2to3.pgen2 import driver
-
-from selenium import webdriver
+import pyautogui
 from time import sleep
-from login2 import site
-from login2 import username
-from login2 import pw
-from webdriver_manager.chrome import ChromeDriverManager
+def open_guest_win(chrome_pos, ico_pos, guest_pos,site):
+    pyautogui.click(chrome_pos)
+    pyautogui.click(ico_pos)
+    pyautogui.click(guest_pos)
+    pyautogui.typewrite(site)
+    pyautogui.press('enter')
+    sleep(2)
+def login(login_click_pos, username, password, submit):
+    pyautogui.click(login_click_x,login_click_y)#clicks the login button from the homepage
+    pyautogui.typewrite(username) #types the username
+    pyautogui.press('tab')#presses tab to get the code to type in
+    pyautogui.typewrite(password) #types the user password
+    pyautogui.click(submit) # hits the button submit the login info
 
+def open_tab(newtab_pos, second_site):
+    pyautogui.click(newtab_pos)#opens the new tab
+    pyautogui.typewrite(second_site) # enters the website name
+    pyautogui.press('enter') #presses the enter button when the site domain is entered
 
-class InstaBot:
-    def __init__(self, site, username, pw):
-        self.driver = webdriver.Chrome()
-        self.site = site
-        self.driver.get(site)
-        self.driver.maximize_window()
-
-        sleep(2)
-        self.driver.find_element_by_xpath('/html/body/div[1]/div[1]/header/div[1]/div/a[3]') \
-            .click()
-        sleep(2)
-        self.driver.find_element_by_xpath('/html/body/div[2]/div/div[1]/div/div/div[1]/fieldset/form/div[1]/div/input') \
-           .send_keys(username)
-        self.driver.find_element_by_xpath('/html/body/div[2]/div/div[1]/div/div/div[1]/fieldset/form/div[2]/div/div/input') \
-            .send_keys(pw)
-        self.driver.find_element_by_xpath('/html/body/div[2]/div/div[1]/div/div/div[1]/fieldset/form/div[4]/div/button')\
-            .click()
-        sleep(2)
-
-
-my_bot = InstaBot(site, username, pw)
